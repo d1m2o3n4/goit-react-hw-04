@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
 import toast, { Toaster } from "react-hot-toast";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -17,12 +18,10 @@ function App() {
   const [showBtn, setShowBtn] = useState(false);
   const [largeImage, setLargeImage] = useState("");
   const [isOpen, setIsOpen] = useState(true);
-  toast.error("Введіть текст!");
+
   useEffect(() => {
-    if (!query.trim()) {
-      setShowBtn(false);
-      return;
-    }
+    if (!query.trim()) return;
+
     setIsLoading(true);
 
     getImages(query, page)
@@ -40,7 +39,13 @@ function App() {
   const onSubmit = (event) => {
     event.preventDefault();
     setQuery(event.target.search.value);
+    if (!query.trim()) {
+      toast.error("Введіть текст!");
+      setShowBtn(false);
+      return;
+    }
     setImages([]);
+    setPage(1);
   };
   const loadMore = () => {
     setPage((prev) => prev + 1);
@@ -52,19 +57,15 @@ function App() {
   const closeModal = () => {
     setIsOpen(false);
   };
-
+  console.log(page);
   return (
     <>
-      {!query.trim() && <Toaster position="top-right" />}
+      <Toaster position="top-right" />
       <Header onSubmit={onSubmit} />
       <ImageGallery images={images} openModal={openModal} />
       {isLoading && <Loader />}
       {error && <ErrorMessage />}
-      {showBtn && (
-        <button onClick={loadMore} className="loadMoreBtn">
-          Load more...
-        </button>
-      )}
+      {showBtn && <LoadMoreBtn loadMore={loadMore} />}
       {largeImage && (
         <ImageModal
           largeImage={largeImage}

@@ -3,4 +3,8 @@ import App from "./App.jsx";
 import "./index.css";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <>
+    <App />
+  </>
+);
