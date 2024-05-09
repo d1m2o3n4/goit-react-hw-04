@@ -1,0 +1,18 @@
+.seacrhHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  & button {
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 1px 5px 1px 5px;
+    background-color: whitesmoke;
+    margin-left: 5px;
+  }
+}

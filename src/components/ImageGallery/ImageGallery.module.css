@@ -1,0 +1,16 @@
+.galleryList {
+  display: flex;
+
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.galleryItem {
+  width: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  & img {
+    height: 100%;
+  }
+}
