@@ -39,11 +39,12 @@ function App() {
   const onSubmit = (event) => {
     event.preventDefault();
     setQuery(event.target.search.value);
-    if (!query.trim()) {
+    if (event.target.search.value === "") {
       toast.error("Введіть текст!");
-      setShowBtn(false);
       return;
     }
+
+    setShowBtn(false);
     setImages([]);
     setPage(1);
   };
@@ -58,6 +59,8 @@ function App() {
     setIsOpen(false);
   };
   console.log(page);
+  console.log(query);
+  console.log(images);
   return (
     <>
       <Toaster position="top-right" />
